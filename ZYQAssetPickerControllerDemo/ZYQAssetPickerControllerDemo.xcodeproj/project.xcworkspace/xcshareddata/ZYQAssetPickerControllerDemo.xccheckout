@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>89D42853-7356-475E-97E3-1E2B853226CD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ZYQAssetPickerControllerDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8A606363-E623-47A1-8E96-45EDC0DCD34E</key>
+		<string>https://github.com/heroims/ZYQAssetPickerController.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8A606363-E623-47A1-8E96-45EDC0DCD34E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/heroims/ZYQAssetPickerController.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8A606363-E623-47A1-8E96-45EDC0DCD34E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8A606363-E623-47A1-8E96-45EDC0DCD34E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ZYQAssetPickerController</string>
+		</dict>
+	</array>
+</dict>
+</plist>

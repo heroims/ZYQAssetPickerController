@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D8446D4F18702A3B00375761 /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8446D4C18702A3B00375761 /* ZYQAssetPicker.Bundle */; };
+		D8446D5018702A3B00375761 /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */; };
 		D8E6C4C9186B21AC0057C549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4C8186B21AC0057C549 /* Foundation.framework */; };
 		D8E6C4CB186B21AC0057C549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */; };
 		D8E6C4CD186B21AC0057C549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CC186B21AC0057C549 /* UIKit.framework */; };
@@ -19,9 +21,7 @@
 		D8E6C4E4186B21AD0057C549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CC186B21AC0057C549 /* UIKit.framework */; };
 		D8E6C4EC186B21AD0057C549 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C4EA186B21AD0057C549 /* InfoPlist.strings */; };
 		D8E6C4EE186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4ED186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.m */; };
-		D8E6C4FA186B227B0057C549 /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4F9186B227B0057C549 /* ZYQAssetPickerController.m */; };
 		D8E6C500186B47410057C549 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4FF186B47410057C549 /* MainViewController.m */; };
-		D8E6C52B18700D890057C549 /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C52A18700D890057C549 /* ZYQAssetPicker.Bundle */; };
 		D8E6C52D187013650057C549 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C52C187013650057C549 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D8446D4C18702A3B00375761 /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
+		D8446D4D18702A3B00375761 /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
+		D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
 		D8E6C4C5186B21AC0057C549 /* ZYQAssetPickerControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYQAssetPickerControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E6C4C8186B21AC0057C549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,11 +55,8 @@
 		D8E6C4E9186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZYQAssetPickerControllerDemoTests-Info.plist"; sourceTree = "<group>"; };
 		D8E6C4EB186B21AD0057C549 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D8E6C4ED186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerControllerDemoTests.m; sourceTree = "<group>"; };
-		D8E6C4F8186B227B0057C549 /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
-		D8E6C4F9186B227B0057C549 /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
 		D8E6C4FE186B47410057C549 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D8E6C4FF186B47410057C549 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		D8E6C52A18700D890057C549 /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
 		D8E6C52C187013650057C549 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -85,6 +85,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D8446D4B18702A3B00375761 /* ZYQAssetPickerController */ = {
+			isa = PBXGroup;
+			children = (
+				D8446D4C18702A3B00375761 /* ZYQAssetPicker.Bundle */,
+				D8446D4D18702A3B00375761 /* ZYQAssetPickerController.h */,
+				D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */,
+			);
+			name = ZYQAssetPickerController;
+			path = ../../ZYQAssetPickerController;
+			sourceTree = "<group>";
+		};
 		D8E6C4BC186B21AC0057C549 = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +130,7 @@
 		D8E6C4CE186B21AC0057C549 /* ZYQAssetPickerControllerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				D8E6C4F7186B21DB0057C549 /* ZYQAssetPickerController */,
+				D8446D4B18702A3B00375761 /* ZYQAssetPickerController */,
 				D8E6C4D7186B21AC0057C549 /* AppDelegate.h */,
 				D8E6C4D8186B21AC0057C549 /* AppDelegate.m */,
 				D8E6C4FE186B47410057C549 /* MainViewController.h */,
@@ -157,16 +168,6 @@
 				D8E6C4EA186B21AD0057C549 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D8E6C4F7186B21DB0057C549 /* ZYQAssetPickerController */ = {
-			isa = PBXGroup;
-			children = (
-				D8E6C52A18700D890057C549 /* ZYQAssetPicker.Bundle */,
-				D8E6C4F8186B227B0057C549 /* ZYQAssetPickerController.h */,
-				D8E6C4F9186B227B0057C549 /* ZYQAssetPickerController.m */,
-			);
-			path = ZYQAssetPickerController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,7 +247,7 @@
 			files = (
 				D8E6C4D3186B21AC0057C549 /* InfoPlist.strings in Resources */,
 				D8E6C4DB186B21AC0057C549 /* Images.xcassets in Resources */,
-				D8E6C52B18700D890057C549 /* ZYQAssetPicker.Bundle in Resources */,
+				D8446D4F18702A3B00375761 /* ZYQAssetPicker.Bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,10 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8E6C4FA186B227B0057C549 /* ZYQAssetPickerController.m in Sources */,
 				D8E6C4D9186B21AC0057C549 /* AppDelegate.m in Sources */,
 				D8E6C4D5186B21AC0057C549 /* main.m in Sources */,
 				D8E6C500186B47410057C549 /* MainViewController.m in Sources */,
+				D8446D5018702A3B00375761 /* ZYQAssetPickerController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
