@@ -55,9 +55,7 @@
 
 -(void)btnClick:(id)sender{
 
-    ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];
-    picker.navigationBar.backgroundColor=[UIColor orangeColor];
-    
+    ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];    
     picker.maximumNumberOfSelection = 10;
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.showEmptyGroups=NO;

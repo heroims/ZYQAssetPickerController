@@ -1,2 +1,27 @@
 /* Localized versions of Info.plist keys */
+/* Navigation bar buttons */
+"取消" = "Cancel";
+"完成" = "Done";
 
+/* Title */
+"相簿" = "Photos";
+
+/* No. of selected */
+"已选择 %ld 张照片 " = "%ld Photo Selected";
+"已选择 %ld 张照片" = "%ld Photos Selected";
+"已选择 %ld 部视频 " = "%ld Video Selected";
+"已选择 %ld 部视频" = "%ld Videos Selected";
+"已选择 %ld 个项目" = "%ld Items Selected";
+
+/* Library Footer */
+"%ld 张照片" = "%ld Photos";
+"%ld 部视频" = "%ld Videos";
+"%ld 张照片, %ld 部视频" = "%ld Photos, %ld Videos";
+
+/* Message if privacy is not granted */
+"此应用无法使用您的照片或视频。" = "This app does not have access to your photos or videos.";
+"你可以在「隐私设置」中启用存取。" = "You can enable access in Privacy Settings.";
+
+/* Message if no assets */
+"没有照片或视频。" = "No Photos or Videos";
+"您可以使用 iTunes 将照片和视频\n同步到 iPhone。" = "You can sync photos and videos onto your iPhone using iTunes.";

@@ -39,6 +39,8 @@
 		D8446D4C18702A3B00375761 /* ZYQAssetPicker.Bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZYQAssetPicker.Bundle; sourceTree = "<group>"; };
 		D8446D4D18702A3B00375761 /* ZYQAssetPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYQAssetPickerController.h; sourceTree = "<group>"; };
 		D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
+		D86038BA18732B460046A5F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D86038BB18732B460046A5F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D8E6C4C5186B21AC0057C549 /* ZYQAssetPickerControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYQAssetPickerControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E6C4C8186B21AC0057C549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -228,6 +230,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
 			);
 			mainGroup = D8E6C4BC186B21AC0057C549;
 			productRefGroup = D8E6C4C6186B21AC0057C549 /* Products */;
@@ -296,6 +299,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D8E6C4D2186B21AC0057C549 /* en */,
+				D86038BA18732B460046A5F9 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -304,6 +308,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D8E6C4EB186B21AD0057C549 /* en */,
+				D86038BB18732B460046A5F9 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
