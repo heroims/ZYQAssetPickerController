@@ -30,6 +30,8 @@
 
 @property (nonatomic, assign) BOOL showEmptyGroups;
 
+@property (nonatomic, assign) BOOL isFinishDismissViewController;
+
 @end
 
 @protocol ZYQAssetPickerControllerDelegate <NSObject>

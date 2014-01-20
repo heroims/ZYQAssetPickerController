@@ -671,7 +671,9 @@ static UIColor *titleColor;
     if ([picker.delegate respondsToSelector:@selector(assetPickerController:didFinishPickingAssets:)])
         [picker.delegate assetPickerController:picker didFinishPickingAssets:_indexPathsForSelectedItems];
     
-    [picker.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    if (picker.isFinishDismissViewController) {
+        [picker.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    }
 }
 
 @end
@@ -1032,12 +1034,13 @@ static UIColor *titleColor;
     
     if (self = [super initWithRootViewController:groupViewController])
     {
-        _maximumNumberOfSelection   = 10;
-        _minimumNumberOfSelection   = 0;
-        _assetsFilter               = [ALAssetsFilter allAssets];
-        _showCancelButton          = YES;
-        _showEmptyGroups           = NO;
-        _selectionFilter            = [NSPredicate predicateWithValue:YES];
+        _maximumNumberOfSelection      = 10;
+        _minimumNumberOfSelection      = 0;
+        _assetsFilter                  = [ALAssetsFilter allAssets];
+        _showCancelButton              = YES;
+        _showEmptyGroups               = NO;
+        _selectionFilter               = [NSPredicate predicateWithValue:YES];
+        _isFinishDismissViewController = YES;
         
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_7_0
         self.preferredContentSize=kPopoverContentSize;
