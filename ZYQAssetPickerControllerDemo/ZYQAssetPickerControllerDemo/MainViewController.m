@@ -56,7 +56,7 @@
 -(void)btnClick:(id)sender{
 
     ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];    
-    picker.maximumNumberOfSelection = 10;
+    picker.maximumNumberOfSelection = 5;
     picker.assetsFilter = [ALAssetsFilter allPhotos];
     picker.showEmptyGroups=NO;
     picker.delegate=self;

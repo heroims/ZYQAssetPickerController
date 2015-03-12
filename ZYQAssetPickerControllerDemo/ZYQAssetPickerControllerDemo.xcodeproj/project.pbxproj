@@ -15,7 +15,6 @@
 		D8E6C4D3186B21AC0057C549 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C4D1186B21AC0057C549 /* InfoPlist.strings */; };
 		D8E6C4D5186B21AC0057C549 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4D4186B21AC0057C549 /* main.m */; };
 		D8E6C4D9186B21AC0057C549 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4D8186B21AC0057C549 /* AppDelegate.m */; };
-		D8E6C4DB186B21AC0057C549 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8E6C4DA186B21AC0057C549 /* Images.xcassets */; };
 		D8E6C4E2186B21AD0057C549 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4E1186B21AD0057C549 /* XCTest.framework */; };
 		D8E6C4E3186B21AD0057C549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4C8186B21AC0057C549 /* Foundation.framework */; };
 		D8E6C4E4186B21AD0057C549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CC186B21AC0057C549 /* UIKit.framework */; };
@@ -23,6 +22,7 @@
 		D8E6C4EE186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4ED186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.m */; };
 		D8E6C500186B47410057C549 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E6C4FF186B47410057C549 /* MainViewController.m */; };
 		D8E6C52D187013650057C549 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C52C187013650057C549 /* AssetsLibrary.framework */; };
+		D8F0F1CE1AB196FA0036D030 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8F0F1CD1AB196FA0036D030 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,7 +51,6 @@
 		D8E6C4D6186B21AC0057C549 /* ZYQAssetPickerControllerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZYQAssetPickerControllerDemo-Prefix.pch"; sourceTree = "<group>"; };
 		D8E6C4D7186B21AC0057C549 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D8E6C4D8186B21AC0057C549 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D8E6C4DA186B21AC0057C549 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D8E6C4E0186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZYQAssetPickerControllerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E6C4E1186B21AD0057C549 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D8E6C4E9186B21AD0057C549 /* ZYQAssetPickerControllerDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ZYQAssetPickerControllerDemoTests-Info.plist"; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		D8E6C4FE186B47410057C549 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D8E6C4FF186B47410057C549 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D8E6C52C187013650057C549 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		D8F0F1CD1AB196FA0036D030 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +137,7 @@
 				D8E6C4D8186B21AC0057C549 /* AppDelegate.m */,
 				D8E6C4FE186B47410057C549 /* MainViewController.h */,
 				D8E6C4FF186B47410057C549 /* MainViewController.m */,
-				D8E6C4DA186B21AC0057C549 /* Images.xcassets */,
+				D8F0F1CD1AB196FA0036D030 /* Images.xcassets */,
 				D8E6C4CF186B21AC0057C549 /* Supporting Files */,
 			);
 			path = ZYQAssetPickerControllerDemo;
@@ -216,7 +216,7 @@
 		D8E6C4BD186B21AC0057C549 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = heroims;
 				TargetAttributes = {
 					D8E6C4DF186B21AD0057C549 = {
@@ -248,8 +248,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8F0F1CE1AB196FA0036D030 /* Images.xcassets in Resources */,
 				D8E6C4D3186B21AC0057C549 /* InfoPlist.strings in Resources */,
-				D8E6C4DB186B21AC0057C549 /* Images.xcassets in Resources */,
 				D8446D4F18702A3B00375761 /* ZYQAssetPicker.Bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +320,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -360,7 +359,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -393,7 +391,6 @@
 		D8E6C4F2186B21AD0057C549 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
@@ -407,7 +404,6 @@
 		D8E6C4F3186B21AD0057C549 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
@@ -421,7 +417,6 @@
 		D8E6C4F5186B21AD0057C549 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZYQAssetPickerControllerDemo.app/ZYQAssetPickerControllerDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -444,7 +439,6 @@
 		D8E6C4F6186B21AD0057C549 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ZYQAssetPickerControllerDemo.app/ZYQAssetPickerControllerDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

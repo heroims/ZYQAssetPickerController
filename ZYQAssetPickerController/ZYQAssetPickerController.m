@@ -318,7 +318,7 @@ static UIColor *titleColor;
         
     }
     else{
-        for (int i=self.contentView.subviews.count; i>0; i--) {
+        for (NSInteger i=self.contentView.subviews.count; i>0; i--) {
             if (i>assets.count) {
                 [((ZYQAssetView*)self.contentView.subviews[i-1]) removeFromSuperview];
             }
