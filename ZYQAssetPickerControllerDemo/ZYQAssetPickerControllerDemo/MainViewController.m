@@ -103,6 +103,11 @@
     });
 }
 
+
+-(void)assetPickerControllerDidMaximum:(ZYQAssetPickerController *)picker{
+    NSLog(@"到达上限");
+}
+
 #pragma mark - UIScrollView Delegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

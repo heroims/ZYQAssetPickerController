@@ -575,7 +575,7 @@ static UIColor *titleColor;
 {
     ZYQAssetPickerController *vc = (ZYQAssetPickerController *)self.navigationController;
     BOOL selectable = [vc.selectionFilter evaluateWithObject:asset];
-    if (_indexPathsForSelectedItems.count > vc.maximumNumberOfSelection) {
+    if (_indexPathsForSelectedItems.count >= vc.maximumNumberOfSelection) {
         if (vc.delegate!=nil&&[vc.delegate respondsToSelector:@selector(assetPickerControllerDidMaximum:)]) {
             [vc.delegate assetPickerControllerDidMaximum:vc];
         }
