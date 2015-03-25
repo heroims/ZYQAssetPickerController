@@ -72,7 +72,7 @@
 @protocol ZYQTapAssetViewDelegate <NSObject>
 
 -(void)touchSelect:(BOOL)select;
--(BOOL)shouldTap;
+-(BOOL)shouldTap:(BOOL)select;
 
 @end
 
@@ -88,7 +88,7 @@
 
 @protocol ZYQAssetViewDelegate <NSObject>
 
--(BOOL)shouldSelectAsset:(ALAsset*)asset;
+-(BOOL)shouldSelectAsset:(ALAsset*)asset select:(BOOL)select;
 -(void)tapSelectHandle:(BOOL)select asset:(ALAsset*)asset;
 
 @end
@@ -113,7 +113,7 @@
 
 @protocol ZYQAssetViewCellDelegate <NSObject>
 
-- (BOOL)shouldSelectAsset:(ALAsset*)asset;
+- (BOOL)shouldSelectAsset:(ALAsset*)asset select:(BOOL)select;
 - (void)didSelectAsset:(ALAsset*)asset;
 - (void)didDeselectAsset:(ALAsset*)asset;
 

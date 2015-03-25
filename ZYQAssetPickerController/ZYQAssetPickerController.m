@@ -142,8 +142,8 @@ static UIColor *disabledColor;
         return;
     }
     
-    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldTap)]) {
-        if (![_delegate shouldTap]&&!_selected) {
+    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldTap:)]) {
+        if (![_delegate shouldTap:_selected]&&!_selected) {
             return;
         }
     }
@@ -267,9 +267,9 @@ static UIColor *titleColor;
 
 #pragma mark - ZYQTapAssetView Delegate
 
--(BOOL)shouldTap{
-    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldSelectAsset:)]) {
-        return [_delegate shouldSelectAsset:_asset];
+-(BOOL)shouldTap:(BOOL)select{
+    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldSelectAsset:select:)]) {
+        return [_delegate shouldSelectAsset:_asset select:select];
     }
     return YES;
 }
@@ -332,9 +332,9 @@ static UIColor *titleColor;
 
 #pragma mark - ZYQAssetView Delegate
 
--(BOOL)shouldSelectAsset:(ALAsset *)asset{
-    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldSelectAsset:)]) {
-        return [_delegate shouldSelectAsset:asset];
+-(BOOL)shouldSelectAsset:(ALAsset *)asset select:(BOOL)select{
+    if (_delegate!=nil&&[_delegate respondsToSelector:@selector(shouldSelectAsset:select:)]) {
+        return [_delegate shouldSelectAsset:asset select:select];
     }
     return YES;
 }
@@ -571,16 +571,16 @@ static UIColor *titleColor;
 
 #pragma mark - ZYQAssetViewCell Delegate
 
-- (BOOL)shouldSelectAsset:(ALAsset *)asset
+- (BOOL)shouldSelectAsset:(ALAsset *)asset select:(BOOL)select
 {
     ZYQAssetPickerController *vc = (ZYQAssetPickerController *)self.navigationController;
     BOOL selectable = [vc.selectionFilter evaluateWithObject:asset];
-    if (_indexPathsForSelectedItems.count >= vc.maximumNumberOfSelection) {
+    if (_indexPathsForSelectedItems.count >= vc.maximumNumberOfSelection&&!select) {
         if (vc.delegate!=nil&&[vc.delegate respondsToSelector:@selector(assetPickerControllerDidMaximum:)]) {
             [vc.delegate assetPickerControllerDidMaximum:vc];
         }
     }
-    
+
     return (selectable && _indexPathsForSelectedItems.count < vc.maximumNumberOfSelection);
 }
 
