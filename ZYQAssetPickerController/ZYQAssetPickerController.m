@@ -756,7 +756,7 @@ static UIColor *titleColor;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
@@ -1027,6 +1027,8 @@ static UIColor *titleColor;
 #pragma mark - ZYQAssetPickerController
 
 @implementation ZYQAssetPickerController
+
+@dynamic delegate;
 
 - (id)init
 {
