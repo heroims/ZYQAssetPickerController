@@ -91,14 +91,8 @@
     
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
     
-    CGSize titleSize        = [self.text sizeWithFont:self.font];
-    [self.textColor set];
-    [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2)
-                   forWidth:kThumbnailLength
-                   withFont:self.font
-                   fontSize:12
-              lineBreakMode:NSLineBreakByTruncatingTail
-         baselineAdjustment:UIBaselineAdjustmentAlignCenters];
+    CGSize titleSize        = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
+    [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2) withAttributes:@{NSFontAttributeName:self.font}];
 
     UIImage *videoIcon=[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ZYQAssetPicker.Bundle/Images/AssetsPickerVideo@2x.png"]];
     
@@ -401,7 +395,8 @@ static UIColor *titleColor;
             [self setEdgesForExtendedLayout:UIRectEdgeNone];
         
         if ([self respondsToSelector:@selector(setContentSizeForViewInPopover:)])
-            [self setContentSizeForViewInPopover:kPopoverContentSize];
+            [self setPreferredContentSize:kPopoverContentSize];
+        
     }
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
