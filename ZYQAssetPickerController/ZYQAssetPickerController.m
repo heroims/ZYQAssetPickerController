@@ -91,6 +91,8 @@
     
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
     
+    CFRelease(baseSpace);
+    CFRelease(gradient);
     CGSize titleSize        = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
     [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2) withAttributes:@{NSFontAttributeName:self.font}];
 
@@ -287,7 +289,7 @@ static UIColor *titleColor;
 @implementation ZYQAssetViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if ([super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return self;
@@ -371,8 +373,6 @@ static UIColor *titleColor;
 
 - (id)init
 {
-    _indexPathsForSelectedItems=[[NSMutableArray alloc] init];
-    
     if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
     {
         self.tableView.contentInset=UIEdgeInsetsMake(9.0, 2.0, 0, 2.0);
@@ -391,6 +391,8 @@ static UIColor *titleColor;
     
     if (self = [super init])
     {
+        _indexPathsForSelectedItems=[[NSMutableArray alloc] init];
+
         if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
             [self setEdgesForExtendedLayout:UIRectEdgeNone];
         
