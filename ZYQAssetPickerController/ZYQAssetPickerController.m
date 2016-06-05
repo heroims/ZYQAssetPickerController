@@ -82,7 +82,8 @@
     
     CGColorSpaceRef baseSpace   = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient      = CGGradientCreateWithColorComponents(baseSpace, colors, locations, 2);
-    
+    CGColorSpaceRelease(baseSpace);
+
     CGContextRef context    = UIGraphicsGetCurrentContext();
     
     CGFloat height          = rect.size.height;
@@ -91,8 +92,8 @@
     
     CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
     
-    CFRelease(baseSpace);
-    CFRelease(gradient);
+    CGGradientRelease(gradient);
+
     CGSize titleSize        = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
     [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2) withAttributes:@{NSFontAttributeName:self.font}];
 
@@ -373,26 +374,26 @@ static UIColor *titleColor;
 
 - (id)init
 {
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
-    {
-        self.tableView.contentInset=UIEdgeInsetsMake(9.0, 2.0, 0, 2.0);
-        
-        minimumInteritemSpacing=3;
-        minimumLineSpacing=3;
-        
-    }
-    else
-    {
-        self.tableView.contentInset=UIEdgeInsetsMake(9.0, 0, 0, 0);
-        
-        minimumInteritemSpacing=2;
-        minimumLineSpacing=2;
-    }
-    
     if (self = [super init])
     {
         _indexPathsForSelectedItems=[[NSMutableArray alloc] init];
-
+        
+        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+        {
+            self.tableView.contentInset=UIEdgeInsetsMake(9.0, 2.0, 0, 2.0);
+            
+            minimumInteritemSpacing=3;
+            minimumLineSpacing=3;
+            
+        }
+        else
+        {
+            self.tableView.contentInset=UIEdgeInsetsMake(9.0, 0, 0, 0);
+            
+            minimumInteritemSpacing=2;
+            minimumLineSpacing=2;
+        }
+        
         if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)])
             [self setEdgesForExtendedLayout:UIRectEdgeNone];
         
