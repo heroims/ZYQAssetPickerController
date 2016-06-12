@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D8446D4F18702A3B00375761 /* ZYQAssetPicker.Bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8446D4C18702A3B00375761 /* ZYQAssetPicker.Bundle */; };
 		D8446D5018702A3B00375761 /* ZYQAssetPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */; };
+		D8C4C4201D03E1ED00137782 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8C4C41F1D03E1ED00137782 /* Photos.framework */; };
 		D8E6C4C9186B21AC0057C549 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4C8186B21AC0057C549 /* Foundation.framework */; };
 		D8E6C4CB186B21AC0057C549 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */; };
 		D8E6C4CD186B21AC0057C549 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E6C4CC186B21AC0057C549 /* UIKit.framework */; };
@@ -41,6 +42,7 @@
 		D8446D4E18702A3B00375761 /* ZYQAssetPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYQAssetPickerController.m; sourceTree = "<group>"; };
 		D86038BA18732B460046A5F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D86038BB18732B460046A5F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D8C4C41F1D03E1ED00137782 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		D8E6C4C5186B21AC0057C549 /* ZYQAssetPickerControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYQAssetPickerControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E6C4C8186B21AC0057C549 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8C4C4201D03E1ED00137782 /* Photos.framework in Frameworks */,
 				D8E6C52D187013650057C549 /* AssetsLibrary.framework in Frameworks */,
 				D8E6C4CB186B21AC0057C549 /* CoreGraphics.framework in Frameworks */,
 				D8E6C4CD186B21AC0057C549 /* UIKit.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		D8E6C4C7186B21AC0057C549 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8C4C41F1D03E1ED00137782 /* Photos.framework */,
 				D8E6C52C187013650057C549 /* AssetsLibrary.framework */,
 				D8E6C4C8186B21AC0057C549 /* Foundation.framework */,
 				D8E6C4CA186B21AC0057C549 /* CoreGraphics.framework */,
@@ -219,6 +223,9 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = heroims;
 				TargetAttributes = {
+					D8E6C4C4186B21AC0057C549 = {
+						DevelopmentTeam = YDDJ83LVSQ;
+					};
 					D8E6C4DF186B21AD0057C549 = {
 						TestTargetID = D8E6C4C4186B21AC0057C549;
 					};
@@ -393,12 +400,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ZYQ.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "236e1622-1194-458a-ac68-12ad5651c2b6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,12 +417,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ZYQ.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "236e1622-1194-458a-ac68-12ad5651c2b6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

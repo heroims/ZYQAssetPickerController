@@ -33,7 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+
     btn=[[UIButton alloc] init];
     btn.frame=CGRectMake(60., self.view.frame.size.height-80, self.view.frame.size.width-120, 60);
     [btn setTitle:@"Open" forState:UIControlStateNormal];
@@ -57,16 +58,19 @@
 
     ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];    
     picker.maximumNumberOfSelection = 5;
-    picker.assetsFilter = [ALAssetsFilter allPhotos];
+    picker.assetsFilter = ZYQAssetsFilterAllAssets;
     picker.showEmptyGroups=NO;
     picker.delegate=self;
     picker.selectionFilter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        if ([[(ALAsset*)evaluatedObject valueForProperty:ALAssetPropertyType] isEqual:ALAssetTypeVideo]) {
-            NSTimeInterval duration = [[(ALAsset*)evaluatedObject valueForProperty:ALAssetPropertyDuration] doubleValue];
+        
+        if ([(ZYQAsset*)evaluatedObject mediaType]==ZYQAssetMediaTypeVideo) {
+            NSTimeInterval duration = [(ZYQAsset*)evaluatedObject duration];
             return duration >= 5;
         } else {
             return YES;
         }
+
+        
     }];
     
     [self presentViewController:picker animated:YES completion:NULL];
@@ -90,15 +94,17 @@
         });
 
         for (int i=0; i<assets.count; i++) {
-            ALAsset *asset=assets[i];
+            ZYQAsset *asset=assets[i];
             UIImageView *imgview=[[UIImageView alloc] initWithFrame:CGRectMake(i*src.frame.size.width, 0, src.frame.size.width, src.frame.size.height)];
             imgview.contentMode=UIViewContentModeScaleAspectFill;
             imgview.clipsToBounds=YES;
-            UIImage *tempImg=[UIImage imageWithCGImage:asset.defaultRepresentation.fullScreenImage];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [imgview setImage:tempImg];
-                [src addSubview:imgview];
-            });
+            [asset setGetFullScreenImage:^(UIImage *result) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [imgview setImage:result];
+                    [src addSubview:imgview];
+                });
+
+            }];
         }
     });
 }

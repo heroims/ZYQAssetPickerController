@@ -8,6 +8,49 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
+
+typedef enum ZYQAssetsFilter:NSInteger{
+    ZYQAssetsFilterAllPhotos=0,
+    ZYQAssetsFilterAllVideos,
+    ZYQAssetsFilterAllAssets
+}ZYQAssetsFilter;
+
+#pragma mark - ZYQAssetsGroup
+typedef void (^ZYQAssetsGroupEnumerationResultsBlock)(id obj, NSUInteger index, BOOL *stop);
+
+@interface ZYQAssetsGroup : NSObject
+
+@property(nonatomic,strong)id originAssetGroup;
+@property(nonatomic,strong)id originFetchResult;
+
+@property(nonatomic,strong)NSString *groupName;
+@property(nonatomic,assign,readonly)NSInteger count;
+@property(nonatomic,copy)void(^getThumbnail)(UIImage *result);
+
+- (void)enumerateObjectsUsingBlock:(ZYQAssetsGroupEnumerationResultsBlock)enumerationBlock;
+
+@end
+
+#pragma mark - ZYQAsset
+
+typedef NS_ENUM(NSInteger, ZYQAssetMediaType) {
+    ZYQAssetMediaTypeUnknown = 0,
+    ZYQAssetMediaTypeImage   = 1,
+    ZYQAssetMediaTypeVideo   = 2,
+    ZYQAssetMediaTypeAudio   = 3,
+};
+
+@interface ZYQAsset : NSObject
+
+@property(nonatomic,strong)id originAsset;
+@property(nonatomic,copy)void(^getThumbnail)(UIImage *result);
+@property(nonatomic,copy)void(^getFullScreenImage)(UIImage *result);
+@property(nonatomic,copy)void(^getOriginImage)(UIImage *result);
+@property(nonatomic,assign,readonly)NSTimeInterval duration;
+@property(nonatomic,assign,readonly)ZYQAssetMediaType mediaType;
+
+@end
 
 #pragma mark - ZYQAssetPickerController
 
@@ -17,7 +60,7 @@
 
 @property (nonatomic, weak) id <UINavigationControllerDelegate, ZYQAssetPickerControllerDelegate> delegate;
 
-@property (nonatomic, strong) ALAssetsFilter *assetsFilter;
+@property (nonatomic, assign) ZYQAssetsFilter assetsFilter;
 
 @property (nonatomic, copy, readonly) NSArray *indexPathsForSelectedItems;
 
@@ -42,9 +85,9 @@
 
 -(void)assetPickerControllerDidCancel:(ZYQAssetPickerController *)picker;
 
--(void)assetPickerController:(ZYQAssetPickerController *)picker didSelectAsset:(ALAsset*)asset;
+-(void)assetPickerController:(ZYQAssetPickerController *)picker didSelectAsset:(ZYQAsset*)asset;
 
--(void)assetPickerController:(ZYQAssetPickerController *)picker didDeselectAsset:(ALAsset*)asset;
+-(void)assetPickerController:(ZYQAssetPickerController *)picker didDeselectAsset:(ZYQAsset*)asset;
 
 -(void)assetPickerControllerDidMaximum:(ZYQAssetPickerController *)picker;
 
@@ -56,7 +99,7 @@
 
 @interface ZYQAssetViewController : UITableViewController
 
-@property (nonatomic, strong) ALAssetsGroup *assetsGroup;
+@property (nonatomic, strong) ZYQAssetsGroup *assetsGroup;
 @property (nonatomic, strong) NSMutableArray *indexPathsForSelectedItems;
 
 @end
@@ -88,14 +131,14 @@
 
 @protocol ZYQAssetViewDelegate <NSObject>
 
--(BOOL)shouldSelectAsset:(ALAsset*)asset select:(BOOL)select;
--(void)tapSelectHandle:(BOOL)select asset:(ALAsset*)asset;
+-(BOOL)shouldSelectAsset:(ZYQAsset*)asset select:(BOOL)select;
+-(void)tapSelectHandle:(BOOL)select asset:(ZYQAsset*)asset;
 
 @end
 
 @interface ZYQAssetView : UIView
 
-- (void)bind:(ALAsset *)asset selectionFilter:(NSPredicate*)selectionFilter isSeleced:(BOOL)isSeleced;
+- (void)bind:(ZYQAsset*)asset selectionFilter:(NSPredicate*)selectionFilter isSeleced:(BOOL)isSeleced;
 
 @end
 
@@ -113,9 +156,9 @@
 
 @protocol ZYQAssetViewCellDelegate <NSObject>
 
-- (BOOL)shouldSelectAsset:(ALAsset*)asset select:(BOOL)select;
-- (void)didSelectAsset:(ALAsset*)asset;
-- (void)didDeselectAsset:(ALAsset*)asset;
+- (BOOL)shouldSelectAsset:(ZYQAsset*)asset select:(BOOL)select;
+- (void)didSelectAsset:(ZYQAsset*)asset;
+- (void)didDeselectAsset:(ZYQAsset*)asset;
 
 @end
 
@@ -123,7 +166,7 @@
 
 @interface ZYQAssetGroupViewCell : UITableViewCell
 
-- (void)bind:(ALAssetsGroup *)assetsGroup;
+- (void)bind:(ZYQAssetsGroup*)assetsGroup;
 
 @end
 
