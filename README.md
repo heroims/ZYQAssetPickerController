@@ -2,7 +2,7 @@ ZYQAssetPickerController
 ========================
 [![](http://i.imgur.com/Yv6RIjd.gif?1)](http://i.imgur.com/Yv6RIjd.gif?1)
 ## Minimum Requirement
-iOS 5.0
+iOS 6.0
 
 ## Installation
 
