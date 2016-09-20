@@ -225,6 +225,7 @@
 				TargetAttributes = {
 					D8E6C4C4186B21AC0057C549 = {
 						DevelopmentTeam = YDDJ83LVSQ;
+						ProvisioningStyle = Automatic;
 					};
 					D8E6C4DF186B21AD0057C549 = {
 						TestTargetID = D8E6C4C4186B21AC0057C549;
@@ -401,14 +402,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = YDDJ83LVSQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ZYQ.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "236e1622-1194-458a-ac68-12ad5651c2b6";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -418,14 +421,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = YDDJ83LVSQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ZYQ.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "236e1622-1194-458a-ac68-12ad5651c2b6";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
