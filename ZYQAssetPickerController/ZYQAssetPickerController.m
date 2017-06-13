@@ -746,7 +746,7 @@ static UIColor *titleColor;
             }
         }
         
-        else if (self.assets.count > 0)
+        if (self.assetsGroup.count-1 == idx)
         {
             [self.tableView reloadData];
             
