@@ -50,6 +50,10 @@ typedef NS_ENUM(NSInteger, ZYQAssetMediaType) {
 @property(nonatomic,assign,readonly)NSTimeInterval duration;
 @property(nonatomic,assign,readonly)ZYQAssetMediaType mediaType;
 
+-(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
+
+-(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
+
 @end
 
 #pragma mark - ZYQAssetPickerController

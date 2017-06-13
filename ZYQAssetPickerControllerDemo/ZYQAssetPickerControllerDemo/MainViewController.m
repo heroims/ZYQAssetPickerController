@@ -98,12 +98,15 @@
             UIImageView *imgview=[[UIImageView alloc] initWithFrame:CGRectMake(i*src.frame.size.width, 0, src.frame.size.width, src.frame.size.height)];
             imgview.contentMode=UIViewContentModeScaleAspectFill;
             imgview.clipsToBounds=YES;
+            
             [asset setGetFullScreenImage:^(UIImage *result) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [imgview setImage:result];
                     [src addSubview:imgview];
                 });
 
+            } fromNetwokProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+                NSLog(@"下载中%f",progress);
             }];
         }
     });

@@ -205,7 +205,7 @@
     }
 }
 
--(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage{
+-(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
     _getFullScreenImage=getFullScreenImage;
     
     if (_originAsset) {
@@ -230,6 +230,15 @@
             CGFloat pixelWidth = photoWidth * multiple;
             CGFloat pixelHeight = pixelWidth / aspectRatio;
             
+            requestOptions.networkAccessAllowed=YES;
+            
+            
+            requestOptions.progressHandler = ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                if (progressHandler) {
+                    progressHandler(progress,error,stop,info);
+                }
+            };
+            
             [[PHImageManager defaultManager] requestImageForAsset:_originAsset targetSize:CGSizeMake(pixelWidth, pixelHeight) contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage *result, NSDictionary *info){
                 BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];
                 
@@ -241,6 +250,15 @@
             }];
         }
     }
+
+}
+
+-(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage{
+    [self setGetFullScreenImage:getFullScreenImage fromNetwokProgressHandler:nil];
+}
+
+-(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
+
 }
 
 -(NSTimeInterval)duration{
