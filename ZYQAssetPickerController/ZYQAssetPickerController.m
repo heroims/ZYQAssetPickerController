@@ -34,8 +34,8 @@
     NSDate *date2 = [[NSDate alloc] initWithTimeInterval:timeInterval sinceDate:date1];
     
     unsigned int unitFlags =
-    NSSecondCalendarUnit | NSMinuteCalendarUnit | NSHourCalendarUnit |
-    NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit;
+    NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour |
+    NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear;
     
     return [calendar components:unitFlags
                        fromDate:date1
@@ -626,7 +626,7 @@ static UIColor *titleColor;
     {
         _indexPathsForSelectedItems=[[NSMutableArray alloc] init];
         
-        if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+        if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
         {
             self.tableView.contentInset=UIEdgeInsetsMake(9.0, 2.0, 0, 2.0);
             
