@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'ZYQAssetPickerController'
-  s.version               = '1.0.0'
+  s.version               = '1.1.0'
   s.summary               = 'A clone of the UIImagePickerController using the Assets Library Framework allowing for multiple asset selection'
   s.homepage              = 'https://github.com/heroims/ZYQAssetPickerController'
   s.license               = { :type => 'MIT', :file => 'README.md' }
