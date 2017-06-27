@@ -1073,15 +1073,18 @@ static UIColor *titleColor;
                 default:
                     break;
             }
-            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptionsAlbums];
             
-            
-            if (![collection.localizedTitle isEqualToString:@"Videos"]) {
-                if (fetchResult.count>0) {
-                    ZYQAssetsGroup *tmpGroup=[[ZYQAssetsGroup alloc] init];
-                    tmpGroup.originAssetGroup=collection;
-                    tmpGroup.originFetchResult=fetchResult;
-                    [self.groups addObject:tmpGroup];
+            // 有可能是PHCollectionList类的的对象，会造成crash，过滤掉
+            if ([collection isKindOfClass:[PHAssetCollection class]]) {
+                PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptionsAlbums];
+                
+                if (![collection.localizedTitle isEqualToString:@"Videos"]) {
+                    if (fetchResult.count>0) {
+                        ZYQAssetsGroup *tmpGroup=[[ZYQAssetsGroup alloc] init];
+                        tmpGroup.originAssetGroup=collection;
+                        tmpGroup.originFetchResult=fetchResult;
+                        [self.groups addObject:tmpGroup];
+                    }
                 }
             }
         }];
