@@ -86,30 +86,24 @@
 #pragma mark - ZYQAssetPickerController Delegate
 -(void)assetPickerController:(ZYQAssetPickerController *)picker didFinishPickingAssets:(NSArray *)assets{
     [src.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        src.contentSize=CGSizeMake(assets.count*src.frame.size.width, src.frame.size.height);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            pageControl.numberOfPages=assets.count;
-        });
-
-        for (int i=0; i<assets.count; i++) {
-            ZYQAsset *asset=assets[i];
-            UIImageView *imgview=[[UIImageView alloc] initWithFrame:CGRectMake(i*src.frame.size.width, 0, src.frame.size.width, src.frame.size.height)];
-            imgview.contentMode=UIViewContentModeScaleAspectFill;
-            imgview.clipsToBounds=YES;
+    src.contentSize=CGSizeMake(assets.count*src.frame.size.width, src.frame.size.height);
+    pageControl.numberOfPages=assets.count;
+    for (int i=0; i<assets.count; i++) {
+        ZYQAsset *asset=assets[i];
+        UIImageView *imgview=[[UIImageView alloc] initWithFrame:CGRectMake(i*src.frame.size.width, 0, src.frame.size.width, src.frame.size.height)];
+        imgview.contentMode=UIViewContentModeScaleAspectFill;
+        imgview.clipsToBounds=YES;
+        
+        [asset setGetFullScreenImage:^(UIImage *result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [imgview setImage:result];
+                [src addSubview:imgview];
+            });
             
-            [asset setGetFullScreenImage:^(UIImage *result) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [imgview setImage:result];
-                    [src addSubview:imgview];
-                });
-
-            } fromNetwokProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
-                NSLog(@"下载中%f",progress);
-            }];
-        }
-    });
+        } fromNetwokProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
+            NSLog(@"下载中%f",progress);
+        }];
+    }
 }
 
 
