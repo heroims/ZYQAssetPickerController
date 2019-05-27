@@ -72,6 +72,13 @@ typedef NS_ENUM(NSInteger, ZYQAssetMediaType) {
 @property (nonatomic, assign) NSInteger minimumNumberOfSelection;
 
 @property (nonatomic, strong) NSPredicate *selectionFilter;
+/**
+ 是否根据时间降序排列,
+默认：NO
+ NO：时间较早拍摄的的照片，展示时排列在上面
+YES：时间较早拍摄的的照片，展示时排列在最下面，（用户进入相册可以看到最新照片）
+ */
+@property (nonatomic, assign) BOOL timeDescSort;
 
 @property (nonatomic, assign) BOOL showCancelButton;
 
