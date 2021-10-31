@@ -72,7 +72,7 @@
 
         
     }];
-    
+    picker.modalPresentationStyle=UIModalPresentationFullScreen;
     [self presentViewController:picker animated:YES completion:NULL];
 
 }
@@ -94,7 +94,7 @@
         imgview.contentMode=UIViewContentModeScaleAspectFill;
         imgview.clipsToBounds=YES;
         
-        [asset setGetFullScreenImage:^(UIImage *result) {
+        [asset setGetThumbnail:^(UIImage *result) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [imgview setImage:result];
                 [src addSubview:imgview];
