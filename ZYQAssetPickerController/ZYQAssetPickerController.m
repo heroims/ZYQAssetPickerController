@@ -45,18 +45,21 @@
 
 + (NSString *)timeDescriptionOfTimeInterval:(NSTimeInterval)timeInterval
 {
-    NSDateComponents *components = [self.class componetsWithTimeInterval:timeInterval];
-    NSInteger roundedSeconds = lround(timeInterval - (components.hour * 60) - (components.minute * 60 * 60));
-    
-    if (components.hour > 0)
-    {
-        return [NSString stringWithFormat:@"%ld:%02ld:%02ld", (long)components.hour, (long)components.minute, (long)roundedSeconds];
+    NSString *newTime;
+    if (timeInterval < 10) {
+        newTime = [NSString stringWithFormat:@"0:0%zd",(NSInteger)timeInterval];
+    } else if (timeInterval < 60) {
+        newTime = [NSString stringWithFormat:@"0:%zd",(NSInteger)timeInterval];
+    } else {
+        NSInteger min = timeInterval / 60;
+        NSInteger sec = timeInterval - (min * 60);
+        if (sec < 10) {
+            newTime = [NSString stringWithFormat:@"%zd:0%zd",min,sec];
+        } else {
+            newTime = [NSString stringWithFormat:@"%zd:%zd",min,sec];
+        }
     }
-    
-    else
-    {
-        return [NSString stringWithFormat:@"%ld:%02ld", (long)components.minute, (long)roundedSeconds];
-    }
+    return newTime;
 }
 
 @end
@@ -169,13 +172,16 @@
 @interface ZYQAsset(){
     UIImage *_cacheThumbnail;
     UIImage *_cacheFullScreenImage;
+    UIImage *_cacheOriginImage;
+
+    AVAssetExportSession *_cacheExportSession;
 }
 
 @end
 
 @implementation ZYQAsset : NSObject
 
--(void)setGetThumbnail:(void (^)(UIImage *))getThumbnail{
+-(void)setGetThumbnail:(void (^)(UIImage *))getThumbnail fromNetwokProgressHandler:(void (^)(double, NSError *, BOOL *, NSDictionary *))progressHandler{
     _getThumbnail=getThumbnail;
     
     if (_originAsset) {
@@ -192,10 +198,16 @@
             PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
             requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
             requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+            requestOptions.progressHandler = ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                if (progressHandler) {
+                    progressHandler(progress,error,stop,info);
+                }
+            };
             [[PHImageManager defaultManager] requestImageForAsset:_originAsset targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage *result, NSDictionary *info){
-                BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];
+                BOOL downloadFinined = NO;
                 
-                //设置BOOL判断，确定返回高清照片
+                downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];//设置BOOL判断，确定返回高清照片
+
                 if (downloadFinined) {
                     _cacheThumbnail=result;
                     _getThumbnail(_cacheThumbnail);
@@ -203,6 +215,43 @@
             }];
         }
     }
+}
+
+-(void)setGetExportSession:(void (^)(AVAssetExportSession *))getExportSession exportPreset:(NSString *)exportPreset fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
+    
+    _getExportSession=getExportSession;
+    
+    if (_originAsset) {
+        if (_cacheExportSession) {
+            _getExportSession(_cacheExportSession);
+            return;
+        }
+        
+        if ([_originAsset isKindOfClass:[ALAsset class]]) {
+            
+            AVURLAsset *avasset=[AVURLAsset URLAssetWithURL:[(ALAsset*)_originAsset defaultRepresentation].url options:nil];
+            _cacheExportSession = [[AVAssetExportSession alloc] initWithAsset:avasset presetName:exportPreset];
+            _getExportSession(_cacheExportSession);
+        }
+        else if ([_originAsset isKindOfClass:[PHAsset class]]){
+            PHVideoRequestOptions *requestOptions = [[PHVideoRequestOptions alloc] init];
+            requestOptions.deliveryMode = PHVideoRequestOptionsDeliveryModeMediumQualityFormat;
+            requestOptions.networkAccessAllowed=YES;
+            
+            requestOptions.progressHandler = ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                if (progressHandler) {
+                    progressHandler(progress,error,stop,info);
+                }
+            };
+            
+            [[PHImageManager defaultManager]  requestExportSessionForVideo:_originAsset options:requestOptions exportPreset:exportPreset resultHandler:^(AVAssetExportSession * _Nullable exportSession, NSDictionary * _Nullable info) {
+                
+                _cacheExportSession=exportSession;
+                _getExportSession(_cacheExportSession);
+            }];
+        }
+    }
+
 }
 
 -(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
@@ -240,9 +289,10 @@
             };
             
             [[PHImageManager defaultManager] requestImageForAsset:_originAsset targetSize:CGSizeMake(pixelWidth, pixelHeight) contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage *result, NSDictionary *info){
-                BOOL downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];
+                BOOL downloadFinined = NO;
                 
-                //设置BOOL判断，确定返回高清照片
+                downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];//设置BOOL判断，确定返回高清照片
+                
                 if (downloadFinined) {
                     _cacheFullScreenImage=result;
                     _getFullScreenImage(_cacheFullScreenImage);
@@ -253,13 +303,70 @@
 
 }
 
+-(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
+    _getOriginImage=getOriginImage;
+    
+    if (_originAsset) {
+        if (_cacheOriginImage) {
+            _getOriginImage(_cacheOriginImage);
+            return;
+        }
+        
+        if ([_originAsset isKindOfClass:[ALAsset class]]) {
+            ALAssetRepresentation *image_representation=[(ALAsset*)_originAsset defaultRepresentation];
+            Byte * buffer = (Byte*)malloc(image_representation.size);
+            NSUInteger length = [image_representation getBytes:buffer fromOffset: 0.0 length:image_representation.size error:nil];
+
+            if (length != 0)  {
+                NSData *adata = [[NSData alloc] initWithBytesNoCopy:buffer length:image_representation.size freeWhenDone:YES];
+                _cacheOriginImage = [UIImage imageWithData:adata];
+            }
+
+            _getOriginImage(_cacheOriginImage);
+        }
+        else if ([_originAsset isKindOfClass:[PHAsset class]]){
+            PHImageRequestOptions *requestOptions = [[PHImageRequestOptions alloc] init];
+            requestOptions.deliveryMode = PHImageRequestOptionsDeliveryModeOpportunistic;
+            requestOptions.resizeMode = PHImageRequestOptionsResizeModeExact;
+                                    
+            requestOptions.networkAccessAllowed=YES;
+            
+            requestOptions.progressHandler = ^(double progress, NSError * _Nullable error, BOOL * _Nonnull stop, NSDictionary * _Nullable info) {
+                if (progressHandler) {
+                    progressHandler(progress,error,stop,info);
+                }
+            };
+            
+            [[PHImageManager defaultManager] requestImageForAsset:_originAsset targetSize:CGSizeMake(((PHAsset*)_originAsset).pixelWidth, ((PHAsset*)_originAsset).pixelHeight) contentMode:PHImageContentModeAspectFill options:requestOptions resultHandler:^(UIImage *result, NSDictionary *info){
+                BOOL downloadFinined = NO;
+                
+                downloadFinined = ![[info objectForKey:PHImageCancelledKey] boolValue] && ![info objectForKey:PHImageErrorKey] && ![[info objectForKey:PHImageResultIsDegradedKey] boolValue];//设置BOOL判断，确定返回高清照片
+
+                if (downloadFinined) {
+                    _cacheFullScreenImage=result;
+                    _getFullScreenImage(_cacheFullScreenImage);
+                }
+            }];
+        }
+    }
+}
+
+-(void)setGetExportSession:(void (^)(AVAssetExportSession *))getExportSession{
+    [self setGetExportSession:getExportSession exportPreset:AVAssetExportPresetMediumQuality fromNetwokProgressHandler:nil];
+}
+
+-(void)setGetThumbnail:(void (^)(UIImage *))getThumbnail{
+    [self setGetThumbnail:getThumbnail fromNetwokProgressHandler:nil];
+}
+
 -(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage{
     [self setGetFullScreenImage:getFullScreenImage fromNetwokProgressHandler:nil];
 }
 
--(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler{
-
+-(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage{
+    [self setGetOriginImage:getOriginImage fromNetwokProgressHandler:nil];
 }
+
 
 -(NSTimeInterval)duration{
     if (_originAsset) {
@@ -271,6 +378,31 @@
         }
     }
     return 0;
+}
+
+-(CGSize)size{
+    if (_originAsset) {
+        if ([_originAsset isKindOfClass:[ALAsset class]]) {
+            return [(ALAsset*)_originAsset defaultRepresentation].dimensions;
+        }
+        else if ([_originAsset isKindOfClass:[PHAsset class]]){
+            return CGSizeMake(((PHAsset*)_originAsset).pixelWidth, ((PHAsset*)_originAsset).pixelHeight);
+        }
+    }
+    return CGSizeMake(0, 0);
+
+}
+-(NSDate*)modificationDate{
+    if (_originAsset) {
+        if ([_originAsset isKindOfClass:[ALAsset class]]) {
+            return [(ALAsset*)_originAsset valueForProperty:ALAssetPropertyDate];
+        }
+        else if ([_originAsset isKindOfClass:[PHAsset class]]){
+            return [(PHAsset*)_originAsset modificationDate];
+        }
+    }
+    return nil;
+
 }
 
 -(ZYQAssetMediaType)mediaType{
@@ -316,12 +448,12 @@
 -(void)drawRect:(CGRect)rect{
     CGFloat colors [] = {
         0.0, 0.0, 0.0, 0.0,
-        0.0, 0.0, 0.0, 0.8,
-        0.0, 0.0, 0.0, 1.0
+        0.7, 0.7, 0.7, 0.6,
+        1.0, 1.0, 1.0, 1.0
     };
-    
+
     CGFloat locations [] = {0.0, 0.75, 1.0};
-    
+
     CGColorSpaceRef baseSpace   = CGColorSpaceCreateDeviceRGB();
     CGGradientRef gradient      = CGGradientCreateWithColorComponents(baseSpace, colors, locations, 2);
     CGColorSpaceRelease(baseSpace);
@@ -329,15 +461,15 @@
     CGContextRef context    = UIGraphicsGetCurrentContext();
     
     CGFloat height          = rect.size.height;
-    CGPoint startPoint      = CGPointMake(CGRectGetMidX(rect), height);
-    CGPoint endPoint        = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+    CGPoint startPoint      = CGPointMake(0, 0);
+    CGPoint endPoint        = CGPointMake(CGRectGetMaxX(rect), CGRectGetMaxY(rect));
     
-    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kCGGradientDrawsBeforeStartLocation);
-    
+    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+
     CGGradientRelease(gradient);
 
-    CGSize titleSize        = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font}];
-    [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2) withAttributes:@{NSFontAttributeName:self.font}];
+    CGSize titleSize        = [self.text sizeWithAttributes:@{NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.textColor}];
+    [self.text drawAtPoint:CGPointMake(rect.size.width - titleSize.width - 2 , (height - 12) / 2) withAttributes:@{NSFontAttributeName:self.font,NSForegroundColorAttributeName:self.textColor}];
 
     UIImage *videoIcon=[UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"ZYQAssetPicker.Bundle/Images/AssetsPickerVideo@2x.png"]];
     
@@ -474,7 +606,7 @@ static UIColor *titleColor;
         _videoTitle.font=titleFont;
         _videoTitle.textColor=titleColor;
         _videoTitle.textAlignment=NSTextAlignmentRight;
-        _videoTitle.backgroundColor=[UIColor clearColor];
+        _videoTitle.backgroundColor=[UIColor colorWithWhite:0 alpha:0.6];
         [self addSubview:_videoTitle];
         
         _tapAssetView=[[ZYQTapAssetView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
@@ -500,6 +632,8 @@ static UIColor *titleColor;
     if (_asset.mediaType==ZYQAssetMediaTypeVideo) {
         _videoTitle.hidden=NO;
         _videoTitle.text=[NSDate timeDescriptionOfTimeInterval:_asset.duration];
+        NSLog(@"%@",_videoTitle.text);
+
     }
     else{
         _videoTitle.hidden=YES;
@@ -1073,18 +1207,15 @@ static UIColor *titleColor;
                 default:
                     break;
             }
+            PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptionsAlbums];
             
-            // 有可能是PHCollectionList类的的对象，会造成crash，过滤掉
-            if ([collection isKindOfClass:[PHAssetCollection class]]) {
-                PHFetchResult *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:fetchOptionsAlbums];
-                
-                if (![collection.localizedTitle isEqualToString:@"Videos"]) {
-                    if (fetchResult.count>0) {
-                        ZYQAssetsGroup *tmpGroup=[[ZYQAssetsGroup alloc] init];
-                        tmpGroup.originAssetGroup=collection;
-                        tmpGroup.originFetchResult=fetchResult;
-                        [self.groups addObject:tmpGroup];
-                    }
+            
+            if (![collection.localizedTitle isEqualToString:@"Videos"]) {
+                if (fetchResult.count>0) {
+                    ZYQAssetsGroup *tmpGroup=[[ZYQAssetsGroup alloc] init];
+                    tmpGroup.originAssetGroup=collection;
+                    tmpGroup.originFetchResult=fetchResult;
+                    [self.groups addObject:tmpGroup];
                 }
             }
         }];

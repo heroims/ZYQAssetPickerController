@@ -47,12 +47,19 @@ typedef NS_ENUM(NSInteger, ZYQAssetMediaType) {
 @property(nonatomic,copy)void(^getThumbnail)(UIImage *result);
 @property(nonatomic,copy)void(^getFullScreenImage)(UIImage *result);
 @property(nonatomic,copy)void(^getOriginImage)(UIImage *result);
+@property(nonatomic,copy)void(^getExportSession)(AVAssetExportSession *result);
 @property(nonatomic,assign,readonly)NSTimeInterval duration;
 @property(nonatomic,assign,readonly)ZYQAssetMediaType mediaType;
+@property(nonatomic,retain,readonly)NSDate *modificationDate;
+@property(nonatomic,assign,readonly)CGSize size;
+
+-(void)setGetThumbnail:(void (^)(UIImage *))getThumbnail fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
 
 -(void)setGetFullScreenImage:(void (^)(UIImage *))getFullScreenImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
 
 -(void)setGetOriginImage:(void (^)(UIImage *))getOriginImage fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
+
+-(void)setGetExportSession:(void (^)(AVAssetExportSession *))getExportSession exportPreset:(NSString *)exportPreset fromNetwokProgressHandler:(void (^)(double ,NSError * , BOOL *, NSDictionary *))progressHandler;
 
 @end
 
