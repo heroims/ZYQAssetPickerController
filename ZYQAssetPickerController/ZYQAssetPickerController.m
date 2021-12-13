@@ -889,6 +889,18 @@ static UIColor *titleColor;
         
     }];
     
+    /**
+     将数组倒序
+     */
+    ZYQAssetPickerController *picker = (ZYQAssetPickerController *)self.navigationController;
+    if(picker.timeDescSort){
+        NSArray *tempArray =    [[self.assets reverseObjectEnumerator] allObjects];
+        [self.assets removeAllObjects];
+        [self.assets addObjectsFromArray:tempArray];
+    }
+    
+
+    
 }
 
 #pragma mark - UITableView DataSource

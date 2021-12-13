@@ -56,11 +56,13 @@
 
 -(void)btnClick:(id)sender{
 
-    ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];    
+    ZYQAssetPickerController *picker = [[ZYQAssetPickerController alloc] init];
+    
     picker.maximumNumberOfSelection = 5;
     picker.assetsFilter = ZYQAssetsFilterAllAssets;
     picker.showEmptyGroups=NO;
     picker.delegate=self;
+    picker.timeDescSort = YES;
     picker.selectionFilter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         
         if ([(ZYQAsset*)evaluatedObject mediaType]==ZYQAssetMediaTypeVideo) {
