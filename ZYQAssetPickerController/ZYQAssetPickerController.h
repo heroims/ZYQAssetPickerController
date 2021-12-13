@@ -87,6 +87,8 @@ YES：时间较早拍摄的的照片，展示时排列在最下面，（用户�
  */
 @property (nonatomic, assign) BOOL timeDescSort;
 
+@property (nonatomic, assign) BOOL scrollBottom;
+
 @property (nonatomic, assign) BOOL showCancelButton;
 
 @property (nonatomic, assign) BOOL showEmptyGroups;

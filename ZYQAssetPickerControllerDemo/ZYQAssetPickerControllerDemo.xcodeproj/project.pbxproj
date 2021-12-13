@@ -224,8 +224,8 @@
 				ORGANIZATIONNAME = heroims;
 				TargetAttributes = {
 					D8E6C4C4186B21AC0057C549 = {
-						DevelopmentTeam = ECXU495BLB;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = YDDJ83LVSQ;
+						ProvisioningStyle = Automatic;
 					};
 					D8E6C4DF186B21AD0057C549 = {
 						TestTargetID = D8E6C4C4186B21AC0057C549;
@@ -402,18 +402,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: 幻影 灵异 (33FX7C95LQ)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = ECXU495BLB;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YDDJ83LVSQ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fzsdlichebao.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = ZYQ.ZYQAssetPickerControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = FZDS_LICHEBAO_DEV;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -430,7 +430,7 @@
 				GCC_PREFIX_HEADER = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "ZYQAssetPickerControllerDemo/ZYQAssetPickerControllerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fzsdlichebao.enterprise;
+				PRODUCT_BUNDLE_IDENTIFIER = ZYQ.ZYQAssetPickerControllerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

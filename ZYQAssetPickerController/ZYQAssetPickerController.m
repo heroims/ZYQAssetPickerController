@@ -860,6 +860,8 @@ static UIColor *titleColor;
     else
         [self.assets removeAllObjects];
     
+    ZYQAssetPickerController *picker = (ZYQAssetPickerController *)self.navigationController;
+
     [self.assetsGroup enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj)
         {
@@ -882,9 +884,14 @@ static UIColor *titleColor;
         
         if (self.assetsGroup.count-1 == idx)
         {
-            [self.tableView reloadData];
             
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:ceil(self.assets.count*1.0/columns)  inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+
+                if (picker.scrollBottom) {
+                    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:ceil(self.assets.count*1.0/columns)  inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                }
+            });
         }
         
     }];
@@ -892,7 +899,6 @@ static UIColor *titleColor;
     /**
      将数组倒序
      */
-    ZYQAssetPickerController *picker = (ZYQAssetPickerController *)self.navigationController;
     if(picker.timeDescSort){
         NSArray *tempArray =    [[self.assets reverseObjectEnumerator] allObjects];
         [self.assets removeAllObjects];

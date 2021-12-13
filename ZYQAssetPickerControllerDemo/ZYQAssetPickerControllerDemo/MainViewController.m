@@ -62,7 +62,8 @@
     picker.assetsFilter = ZYQAssetsFilterAllAssets;
     picker.showEmptyGroups=NO;
     picker.delegate=self;
-    picker.timeDescSort = YES;
+    picker.timeDescSort = NO;
+    picker.scrollBottom=YES;
     picker.selectionFilter = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         
         if ([(ZYQAsset*)evaluatedObject mediaType]==ZYQAssetMediaTypeVideo) {
